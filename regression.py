@@ -57,3 +57,31 @@ X = df
 X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.7, test_size=0.3, random_state=100)
 print(f"Training set size: {X_train.shape[0]} samples")
 print(f"Testing set size: {X_test.shape[0]} samples")
+
+
+lm = LinearRegression()
+lm.fit(X_train, y_train)
+
+print("\nModel training complete.")
+print(f"Intercept (c): {lm.intercept_}")
+print(f"Coefficients (m): {lm.coef_}")
+
+y_pred = lm.predict(X_test)
+
+
+r2 = r2_score(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse) 
+
+print(f"R-squared (R2) on the test set: {r2:.4f}")
+print(f"Mean Squared Error (MSE) on the test set: {mse:.4f}")
+print(f"Root Mean Squared Error (RMSE) on the test set: {rmse:.4f}")
+
+
+plt.figure(figsize=(8, 5))
+plt.scatter(y_test, y_pred)
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--', lw=2) 
+plt.xlabel('Actual Prices')
+plt.ylabel('Predicted Prices')
+plt.title('Actual vs. Predicted Prices')
+plt.show()
