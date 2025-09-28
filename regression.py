@@ -50,3 +50,10 @@ plt.figure(figsize=(16, 10))
 sns.heatmap(df.corr(), annot=True, cmap='coolwarm', fmt='.2f')
 plt.title('Correlation Matrix of All Features')
 plt.show()
+
+y = df.pop('price')
+X = df
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.7, test_size=0.3, random_state=100)
+print(f"Training set size: {X_train.shape[0]} samples")
+print(f"Testing set size: {X_test.shape[0]} samples")
