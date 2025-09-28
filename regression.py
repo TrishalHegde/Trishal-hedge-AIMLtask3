@@ -31,3 +31,22 @@ df[num_vars] = scaler.fit_transform(df[num_vars])
 
 print("\nDataset after scaling numerical features:")
 print(df.head())
+
+plt.figure(figsize=(8, 5))
+sns.histplot(df['price'], kde=True)
+plt.title('Distribution of House Prices')
+plt.xlabel('Price (Scaled)')
+plt.ylabel('Frequency')
+plt.show()
+
+
+plt.figure(figsize=(8, 5))
+sns.scatterplot(x='area', y='price', data=df)
+plt.title('Area vs. Price')
+plt.show()
+
+
+plt.figure(figsize=(16, 10))
+sns.heatmap(df.corr(), annot=True, cmap='coolwarm', fmt='.2f')
+plt.title('Correlation Matrix of All Features')
+plt.show()
