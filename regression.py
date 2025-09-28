@@ -23,3 +23,11 @@ df.drop('furnishingstatus', axis=1, inplace=True)
 
 print("\nDataset after handling categorical variables:")
 print(df.head())
+
+scaler = MinMaxScaler()
+
+num_vars = ['price', 'area', 'bedrooms', 'bathrooms', 'stories', 'parking']
+df[num_vars] = scaler.fit_transform(df[num_vars])
+
+print("\nDataset after scaling numerical features:")
+print(df.head())
